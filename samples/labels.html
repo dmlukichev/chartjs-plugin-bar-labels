@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Scatter Chart</title>
+    <script src="../node_modules/chart.js/dist/Chart.bundle.js"></script>
+    <script src="../src/index.js"></script>
+    <style>
+        canvas {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="width:75%; margin: auto;">
+        <div>
+            <canvas id="canvas"></canvas>
+        </div>
+    </div>
+    <script>
+
+        const labels = [];
+        for (let i = 1; i <= 15; i++) {
+            labels.push(i);
+        }
+        const barChartData = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Red',
+                    backgroundColor: 'rgba(255, 99, 132, 1)',
+                    borderColor: 'rgba(255,99,132,1)',
+                    data: labels.map(() => Math.random()*100)
+                },
+                {
+                    label: 'Blue',
+                    barLabels: {
+                        fontColor: '#000',
+                    },
+                    backgroundColor: 'rgba(54, 162, 235, 1)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    data: labels.map(() => Math.random()*100)
+                }
+            ]
+        };
+
+        const barChartOptions = {
+            scales: {
+                xAxes: [{
+                    stacked: true
+                }],
+                yAxes: [{
+                    stacked: true
+                }]
+            },
+            barLabels: {
+                format(value) { return Math.round(value*100)/100 }
+            },
+            stackLabels: {
+                format(value) { return Math.round(value*100)/100 }
+            }
+        };
+
+        window.addEventListener('load', function() {
+            const ctx = document.getElementById("canvas").getContext("2d");
+            window.barChart = new Chart(ctx, {
+                type: 'bar',
+                data: barChartData,
+                options: barChartOptions,
+            })
+        });
+    </script>
+</body>
+
+</html>

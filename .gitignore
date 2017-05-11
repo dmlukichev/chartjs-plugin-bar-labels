@@ -1,0 +1,29 @@
+# Configuration
+.env
+
+# IDE files
+*.ipr
+*.iws
+.idea
+.c9
+
+# Modules
+node_modules
+vendor
+typings
+
+# Log Files
+logs
+npm-debug.log
+
+# OS generated files
+.DS_Store
+.DS_Store?
+Thumbs.db
+
+# Generated Files
+*.ser
+*~
+*.bak
+*.off
+*.old
